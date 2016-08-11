@@ -1,0 +1,19 @@
+{
+  "name": "fw-helper",
+  "version": "0.0.0",
+  "description": "Helper functions for working with fast jquery",
+  "main": "src/helper.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/oresh/fw-helper.git"
+  },
+  "keywords": [
+    "fruitware",
+    "jquery"
+  ],
+  "author": "oresh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/oresh/fw-helper/issues"
+  },
+}
