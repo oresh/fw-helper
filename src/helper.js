@@ -1,53 +1,59 @@
+// Main helper function
+var Helper = {}
+
+// Helper private functions
+var _helper = {}
+
 // helper function to get js element.
-var getElement = function(el) {
+_helper.getElement = function(el) {
   return el instanceof jQuery ? el[0] : el;
 };
 
 // check if element has class.
-var hasClass = function($el, className) {
-  var el = this.getElement($el);
+Helper.hasClass = function($el, className) {
+  var el = _helper.getElement($el);
   if (el.classList) return el.classList.contains(className);
   else return new RegExp('(^| )' + className + '( |$)', 'gi').test(el.className);
 };
 
 // adds class to an element.
-var addClass = function($el, className) {
-  var el = this.getElement($el);
+Helper.addClass = function($el, className) {
+  var el = _helper.getElement($el);
   if (el.classList) el.classList.add(className);
   else el.className += ' ' + className;
 };
 
 // removes class from an element.
-var removeClass = function($el, className) {
-  var el = this.getElement($el);
+Helper.removeClass = function($el, className) {
+  var el = _helper.getElement($el);
   if (el.classList) el.classList.remove(className);
   else el.className = el.className.replace(new RegExp('(^|\\b)' + className.split(' ').join('|') + '(\\b|$)', 'gi'), ' ');
 };
 
 // hide provided element.
-var hide = function($el) {
-  var el = this.getElement($el);
+Helper.hide = function($el) {
+  var el = _helper.getElement($el);
   el.style.display = 'none';
 }
 
 // show provided element.
-var show = function($el) {
-  var el = this.getElement($el);
+Helper.show = function($el) {
+  var el = _helper.getElement($el);
   el.style.display = '';
 }
 
 // append element to another element.
-var append = function($parent, $el) {
-  var parent = this.getElement($parent);
-  var el = this.getElement($el);
+Helper.append = function($parent, $el) {
+  var parent = _helper.getElement($parent);
+  var el = _helper.getElement($el);
   parent.appendChild(el);
 }
 
 // check if selector exists.
-var exist = function(selector, $el) {
+Helper.exist = function(selector, $el) {
   var target;
   if (typeof $el != 'undefined') {
-    target = this.getElement($el);
+    target = _helper.getElement($el);
   } else {
     target = document;
   }
@@ -55,7 +61,7 @@ var exist = function(selector, $el) {
 }
 
 // use for instead of each.
-var each = function($el, fn) {
+Helper.each = function($el, fn) {
   for (var i = 0, len = $el.length; i < len; i++) {
     var $item = $el[i];
     fn(item);
@@ -63,8 +69,8 @@ var each = function($el, fn) {
 };
 
 // get or set attribute of an element.
-var attr = function($el, attr, val) {
-  var el = this.getElement($el);
+Helper.attr = function($el, attr, val) {
+  var el = _helper.getElement($el);
   if (typeof val == 'undefined') {
     el.getAttribute(attr);
   } else {
@@ -72,15 +78,5 @@ var attr = function($el, attr, val) {
   }
 }
 
-module.exports = {
-  hasClass    : hasClass,
-  addClass    : addClass,
-  removeClass : removeClass,
-  each        : each,
-  hide        : hide,
-  show        : show,
-  append      : append,
-  exist       : exist,
-  each        : each,
-  attr        : attr
-};
+// export Helper object.
+module.exports = Helper;
